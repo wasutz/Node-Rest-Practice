@@ -3,6 +3,9 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 mongoose.connect('mongodb://localhost/bookstore');
 
 require('./routes')(app);
