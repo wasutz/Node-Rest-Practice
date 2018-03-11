@@ -1,8 +1,8 @@
-Book = require('../models/Book.js');
+const BookRepository = require('../repositories/BookRepository.js');
 
 exports.findAll = function(request, response) {
-	Book.findAll(function(err, books){
-		if(err){
+	BookRepository.findAll(function(err, books){
+		if (err) {
 			throw err;
 		}
 
@@ -11,8 +11,8 @@ exports.findAll = function(request, response) {
 };
 
 exports.findById = function(request, response) {
-	Book.findById(request.params.id, function(err, book){
-		if(err){
+	BookRepository.findById(request.params.id, function(err, book) {
+		if (err) {
 			throw err;
 		}
 
@@ -21,10 +21,10 @@ exports.findById = function(request, response) {
 };
 
 exports.createBook = function(request, response) {
-	var book = request.body;
+	const book = request.body;
 
-	Book.createBook(book, function(err, book){
-		if(err){
+	BookRepository.createBook(book, function(err, book) {
+		if (err) {
 			throw err;
 		}
 
