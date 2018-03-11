@@ -1,19 +1,19 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+require('dotenv').config()
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost/bookstore');
+mongoose.connect(process.env.DB_MONGO_URI);
 
-require('./routes')(app);
+require("./routes")(app);
 
-app.get('/', function(request, response){
-	response.send('Please use api in path /api/v1/books');
+app.get("/", function(request, response){
+	response.send(`It's works!`);
 });
 
-app.listen(3000, function(){
-	console.log('Server Started On Port 3000');
-});
+module.exports = app;
