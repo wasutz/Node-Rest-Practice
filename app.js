@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 mongoose.connect(process.env.DB_MONGO_URI);
 
-require("./routes")(app);
+require('./routes/api.js')(app);
 
 app.get("/", function(request, response){
 	response.send(`It's works!`);

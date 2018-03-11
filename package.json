@@ -10,10 +10,10 @@
   "author": "Wasut",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "*",
+    "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
-    "express": "*",
-    "mongoose": "*"
+    "express": "^4.16.2",
+    "mongoose": "^4.13.5"
   },
   "devDependencies": {
     "nodemon": "^1.17.1"
