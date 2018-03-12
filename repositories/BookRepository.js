@@ -1,18 +1,18 @@
-const Book = require('../models/Book.js');
+const Book = require("../models/Book.js");
 
-module.exports.findAll = function(callback, limit){
-	Book.find(callback).limit(limit);
+module.exports.findAll = () => {
+	return Book.find({});
 }
 
-module.exports.findById = function(id, callback){
-	Book.findOne({"_id": id }, callback);
+module.exports.findById = (id) => {
+	return Book.findOne({"_id": id });
 }
 
-module.exports.createBook = function(book, callback){
-	Book.create(book, callback);
+module.exports.createBook = (book) => {
+	return Book.create(book);
 }
 
-module.exports.updateBook = function(id, newBook, callback){
+module.exports.updateBook = (id, newBook) => {
 	Book.findOne({"_id": id }, function(err, book){
 		if(err){
 			throw err;
@@ -26,6 +26,6 @@ module.exports.updateBook = function(id, newBook, callback){
 	});
 }
 
-module.exports.deleteBook = function(id, callback){
-	Book.remove({"_id": id }, callback);
+module.exports.deleteBook = (id) => {
+	return Book.remove({"_id": id });
 }

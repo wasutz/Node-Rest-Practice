@@ -1,42 +1,36 @@
 const BookRepository = require('../repositories/BookRepository.js');
 
-exports.findAll = function(request, response) {
-	BookRepository.findAll(function(err, books){
-		if (err) {
-			throw err;
-		}
-
+exports.findAll = (request, response) => {
+	BookRepository.findAll().then((books) => {
 		response.json(books);
+	}).catch((error) => {
+		response.json(error);
 	});
 };
 
-exports.findById = function(request, response) {
-	BookRepository.findById(request.params.id, function(err, book) {
-		if (err) {
-			throw err;
-		}
-
-		response.json(book);
+exports.findById = (request, response) => {
+	BookRepository.findById(request.params.id).then((books) => {
+		response.json(books);
+	}).catch((error) => {
+		response.json({"error": error.message});
 	});
 };
 
-exports.createBook = function(request, response) {
+exports.createBook = (request, response) => {
 	const book = request.body;
 
-	BookRepository.createBook(book, function(err, book) {
-		if (err) {
-			throw err;
-		}
-
+	BookRepository.createBook(book).then((book) => {
 		response.json(book);
+	}).catch((error) => {
+		response.json({"error": error.message});
 	});
 };
 
-exports.updateBook = function(request, response) {
-	var id = request.params.id;
-	var book = request.body;
+exports.updateBook = (request, response) => {
+	const id = request.params.id;
+	const book = request.body;
 
-	Book.updateBook(id, book, function(err, book){
+	BookRepository.updateBook(id, book, function(err, book){
 		if(err){
 			response.status(404).send('Not found');
 		}
@@ -45,14 +39,12 @@ exports.updateBook = function(request, response) {
 	});
 };
 
-exports.deleteBook = function(request, response) {
-	var id = request.params.id;
+exports.deleteBook = (request, response) => {
+	const id = request.params.id;
 
-	Book.deleteBook(id, function(err, book){
-		if(err){
-			throw err;
-		}
-
-		response.status(204).send('No Content');
+	BookRepository.deleteBook(id).then(() => {
+		response.status(204).send('No content');;
+	}).catch((error) => {
+		response.json({"error": error.message});
 	});
 };
