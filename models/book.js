@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const bookSchema = mongoose.Schema({
-	_id: mongoose.Schema.Types.ObjectId,
 	title: {
 		type: String,
 		require: true
@@ -14,4 +13,4 @@ const bookSchema = mongoose.Schema({
 	}
 });
 
-const Book = module.exports = mongoose.model('Book', bookSchema);
+const Book = module.exports = mongoose.model("Book", bookSchema);
